@@ -161,14 +161,14 @@ body {
     gap: 25px;
 }
 
-.experience-container {
+.experience-container, .education-container {
     display: flex;
     flex-direction: row;
     gap: 30px;
     justify-content: space-between;
 }
 
-.experience-column {
+.experience-column, .education-column {
     flex: 1;
     display: flex;
     flex-direction: column;
