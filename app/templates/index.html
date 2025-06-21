@@ -32,44 +32,103 @@
         </div>
     </header>
 
-    <div class="profile">
-        <div id="profile-picture" class="profile-picture">
-            <img src="./static/img/pfp.jpg">
+    <div class="profiles-container">
+        <!-- Hunter's Profile -->
+        <div class="profile">
+            <div id="profile-picture" class="profile-picture">
+                <img src="./static/img/pfp.jpg">
+            </div>
+            <h1>Hunter</h1>
         </div>
-        <h1>{{ title }}</h1>
+
+        <!-- Baljinder's Profile -->
+        <div class="profile">
+            <div id="profile-picture" class="profile-picture">
+                <img src="./static/img/BHpfp.jpg">
+            </div>
+            <h1>Baljinder</h1>
+        </div>
     </div>
 
-    <div class="about-section">
-        <h2>About Me</h2>
-        <p>I am a full stack developer with a passion for creating beautiful and functional web applications. I have experience with a variety of technologies including Python, Flask, JavaScript, and more. I am always looking to learn and grow as a developer.</p>
+    <div class="about-container">
+        <!-- Hunter's About Section -->
+        <div class="about-section">
+            <h2>About Hunter</h2>
+            <p>I am a full stack developer with a passion for creating beautiful and functional web applications. I have experience with a variety of technologies including Python, Flask, JavaScript, and more. I am always looking to learn and grow as a developer.</p>
+        </div>
+
+        <!-- Baljinder's About Section -->
+        <div class="about-section">
+            <h2>About Baljinder</h2>
+            <p>I am a software engineer with a passion for Machine Learning, Artificial Intelligence, and Distributed Systems. I want to create products/technologies that will help people and help the world.</p>
+        </div>
     </div>
 
     <div class="section">
         <h2 class="section-title">Work Experience</h2>
         <div class="experience-container">
-            <div class="experience-item">
-                <h3>Production Engineer Fellow</h3>
-                <h4>Meta x MLH</h4>
-                <p class="experience-date">June 2025 – September 2025</p>
-                <p class="technologies"><strong>Technologies:</strong> Linux, Python, Flask, MySQL, Docker, Digital Ocean, CI/CD, Prometheus</p>
+            <!-- Hunter's Experience -->
+            <div class="experience-column">
+                <h3 class="person-name">Hunter</h3>
+                <div class="experience-item">
+                    <h3>Production Engineer Fellow</h3>
+                    <h4>Meta x MLH</h4>
+                    <p class="experience-date">June 2025 – September 2025</p>
+                    <p class="technologies"><strong>Technologies:</strong> Linux, Python, Flask, MySQL, Docker, Digital Ocean, CI/CD, Prometheus</p>
+                </div>
+                <div class="experience-item">
+                    <h3>Undergraduate Researcher</h3>
+                    <h4>San Jose State University</h4>
+                    <p class="experience-date">September 2024 – May 2025</p>
+                    <p class="technologies"><strong>Technologies:</strong> Python, PyTorch, CAD, MPNN, GNN, Fusion 360</p>
+                </div>
+                <div class="experience-item">
+                    <h3>Software Engineer Intern</h3>
+                    <h4>SJSU College of Engineering</h4>
+                    <p class="experience-date">September 2024 – January 2025</p>
+                    <p class="technologies"><strong>Technologies:</strong> Python, Discord.py, LangChain, Groq, FastAPI</p>
+                </div>
+                <div class="experience-item">
+                    <h3>Software Engineer Intern</h3>
+                    <h4>SJSU Software and Computer Engineering Society</h4>
+                    <p class="experience-date">May 2024 – August 2024</p>
+                    <p class="technologies"><strong>Technologies:</strong> React, TypeScript, Node.js, Express.js, MongoDB, Mocha, Chai</p>
+                </div>
             </div>
-            <div class="experience-item">
-                <h3>Undergraduate Researcher</h3>
-                <h4>San Jose State University</h4>
-                <p class="experience-date">September 2024 – May 2025</p>
-                <p class="technologies"><strong>Technologies:</strong> Python, PyTorch, CAD, MPNN, GNN, Fusion 360</p>
-            </div>
-            <div class="experience-item">
-                <h3>Software Engineer Intern</h3>
-                <h4>SJSU College of Engineering</h4>
-                <p class="experience-date">September 2024 – January 2025</p>
-                <p class="technologies"><strong>Technologies:</strong> Python, Discord.py, LangChain, Groq, FastAPI</p>
-            </div>
-            <div class="experience-item">
-                <h3>Software Engineer Intern</h3>
-                <h4>SJSU Software and Computer Engineering Society</h4>
-                <p class="experience-date">May 2024 – August 2024</p>
-                <p class="technologies"><strong>Technologies:</strong> React, TypeScript, Node.js, Express.js, MongoDB, Mocha, Chai</p>
+
+            <!-- Baljinder's Experience -->
+            <div class="experience-column">
+                <h3 class="person-name">Baljinder</h3>
+                <div class="experience-item">
+                    <h3>Software Development Engineering Intern</h3>
+                    <h4>Amazon Web Services</h4>
+                    <p class="experience-date">June 2025 - Present</p>
+                    <p class="technologies"><strong>Technologies:</strong> AWS Lambda, AI agents, MCP server, distributed systems</p>
+                </div>
+                <div class="experience-item">
+                    <h3>Undergraduate Research Intern</h3>
+                    <h4>University of Washington</h4>
+                    <p class="experience-date">April 2025 - Present</p>
+                    <p class="technologies"><strong>Technologies:</strong> Reinforcement Learning, Imitation Learning, RAIVN Lab</p>
+                </div>
+                <div class="experience-item">
+                    <h3>Software Engineering Intern</h3>
+                    <h4>Lohman Laboratory</h4>
+                    <p class="experience-date">January 2025 - May 2025</p>
+                    <p class="technologies"><strong>Technologies:</strong> Next.js, Python, MySQL, CI/CD, full-stack development</p>
+                </div>
+                <div class="experience-item">
+                    <h3>Machine Learning Intern</h3>
+                    <h4>Interdisciplinary Data Science Lab</h4>
+                    <p class="experience-date">February 2024 - May 2024</p>
+                    <p class="technologies"><strong>Technologies:</strong> Python, K-means, LMCLUS, Julia, C++, machine learning</p>
+                </div>
+                <div class="experience-item">
+                    <h3>Software Engineering Intern</h3>
+                    <h4>ICCAE: Cyber Threat Intelligence Integration Center</h4>
+                    <p class="experience-date">August 2023 – June 2024</p>
+                    <p class="technologies"><strong>Technologies:</strong> Python Flask, Next.js, NLP, SQL, government research</p>
+                </div>
             </div>
         </div>
     </div>
@@ -77,9 +136,23 @@
     <div class="section">
         <h2 class="section-title">Education</h2>
         <div class="education-container">
-            <div class="education-item">
-                <h3>San Jose State University</h3>
-                <p>Expected Graduation: May 2027</p>
+            <!-- Hunter's Education -->
+            <div class="education-column">
+                <h3 class="person-name">Hunter</h3>
+                <div class="education-item">
+                    <h3>San Jose State University</h3>
+                    <p>Expected Graduation: May 2027</p>
+                </div>
+            </div>
+
+            <!-- Baljinder's Education -->
+            <div class="education-column">
+                <h3 class="person-name">Baljinder</h3>
+                <div class="education-item">
+                    <h3>City College of New York (CCNY)</h3>
+                    <p>Computer Science Major, Business Administration Minor</p>
+                    <p>Expected Graduation: December 2025</p>
+                </div>
             </div>
         </div>
     </div>
@@ -87,23 +160,44 @@
     <div class="section">
         <h2 class="section-title">Hobbies</h2>
         <div class="hobbies-container">
-            <div class="hobby-item">
-                <img src="./static/img/swimming_logo.jpg" alt="">
-                <h4>Swimming</h4>
+            <!-- Hunter's Hobbies -->
+            <div class="hobby-column">
+                <h3 class="person-name">Hunter</h3>
+                <div class="hobby-item">
+                    <img src="./static/img/swimming_logo.jpg" alt="">
+                    <h4>Swimming</h4>
+                </div>
+                <div class="hobby-item">
+                    <img src="./static/img/weightlifting_logo.jpg" alt="">
+                    <h4>Weightlifting</h4>
+                </div>
+                <div class="hobby-item">
+                    <img src="./static/img/pogo_logo.png" alt="">
+                    <h4>Pokemon Go</h4>
+                </div>
             </div>
-            <div class="hobby-item">
-                <img src="./static/img/weightlifting_logo.jpg" alt="">
-                <h4>Weightlifting</h4>
-            </div>
-            <div class="hobby-item">
-                <img src="./static/img/pogo_logo.png" alt="">
-                <h4>Pokemon Go</h4>
+
+            <!-- Baljinder's Hobbies -->
+            <div class="hobby-column">
+                <h3 class="person-name">Baljinder</h3>
+                <div class="hobby-item">
+                    <img src="./static/img/martial_arts.jpg" alt="">
+                    <h4>Martial Arts</h4>
+                </div>
+                <div class="hobby-item">
+                    <img src="./static/img/photography.jpg" alt="">
+                    <h4>Photography</h4>
+                </div>
+                <div class="hobby-item">
+                    <img src="./static/img/reading.jpg" alt="">
+                    <h4>Reading</h4>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="section">
-        <h2 class="section-title">Places I've Visited</h2>
+        <h2 class="section-title">Places We've Visited</h2>
         <div id="map"></div>
     </div>
 
@@ -111,7 +205,7 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script>
-        var map = L.map('map').setView([20, -40], 2);
+        var map = L.map('map').setView([30, -40], 2);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
@@ -119,18 +213,29 @@
         }).addTo(map);
 
         var locations = [
-            { name: "Hawaii", coords: [21.3069, -157.8583] },
-            { name: "NYC", coords: [40.7128, -74.0060] },
-            { name: "Miami", coords: [25.7617, -80.1918] },
-            { name: "Vietnam", coords: [14.0583, 108.2772] },
-            { name: "San Francisco", coords: [37.7749, -122.4194] },
-            { name: "LA", coords: [34.0522, -118.2437] },
-            { name: "Home", coords: [37.3382, -121.8863] }
+            // Hunter's locations
+            { name: "Hawaii", coords: [21.3069, -157.8583], person: "Hunter" },
+            { name: "NYC", coords: [40.7128, -74.0060], person: "Hunter" },
+            { name: "Miami", coords: [25.7617, -80.1918], person: "Hunter" },
+            { name: "Vietnam", coords: [14.0583, 108.2772], person: "Hunter" },
+            { name: "San Francisco", coords: [37.7749, -122.4194], person: "Hunter" },
+            { name: "LA", coords: [34.0522, -118.2437], person: "Hunter" },
+            { name: "Home", coords: [37.3382, -121.8863], person: "Hunter" },
+            
+            // Baljinder's locations
+            { name: "Beijing, China", coords: [39.9042, 116.4074], person: "Baljinder" },
+            { name: "Punjab, India", coords: [31.1471, 75.3412], person: "Baljinder" },
+            { name: "New Delhi, India", coords: [28.6139, 77.2090], person: "Baljinder" },
+            { name: "Seattle", coords: [47.6062, -122.3321], person: "Baljinder" },
+            { name: "New York City", coords: [40.7128, -74.0060], person: "Baljinder" },
+            { name: "Vancouver, CA", coords: [49.2827, -123.1207], person: "Baljinder" },
+            { name: "Toronto, CA", coords: [43.6532, -79.3832], person: "Baljinder" }
         ];
 
         locations.forEach(function (location) {
-            L.marker(location.coords).addTo(map)
-                .bindPopup('<b>' + location.name + '</b>');
+            var markerColor = location.person === "Hunter" ? "blue" : "red";
+            var marker = L.marker(location.coords).addTo(map)
+                .bindPopup('<b>' + location.name + '</b><br><em>Visited by: ' + location.person + '</em>');
         });
     </script>
 </body>
