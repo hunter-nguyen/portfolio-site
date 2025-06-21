@@ -54,6 +54,8 @@ body {
     text-align: center;
     height: 320px;
     margin-bottom: 50px;
+    flex: 1;
+    margin: 0 10px;
 }
 
 .profile h1 {
@@ -96,13 +98,29 @@ body {
     font-weight: 700;
 }
 
-.about-section {
-    width: 60%;
+.profiles-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 50px;
+}
+
+.about-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
     margin: 50px auto;
+    width: 90%;
+}
+
+.about-section {
+    width: 100%;
+    margin: 0;
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    flex: 1;
 }
 
 .about-section h2 {
