@@ -118,3 +118,108 @@ body {
     line-height: 1.6;
     text-align: justify;
 }
+
+.section {
+    width: 60%;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.section-title {
+    color: #1C539F;
+    font-size: 2.2em;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #1C539F;
+    text-align: center;
+}
+
+.experience-container, .education-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.experience-item, .education-item {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-left: 5px solid #1d539f;
+    border-radius: 5px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.experience-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.experience-item h3, .education-item h3 {
+    margin: 0 0 5px 0;
+    color: #343a40;
+    font-size: 1.6em;
+}
+
+.experience-item h4 {
+    margin: 0 0 10px 0;
+    color: #5a6268;
+    font-style: italic;
+    font-weight: 500;
+}
+
+.experience-date {
+    margin: 0 0 10px 0;
+    color: #6c757d;
+    font-size: 0.9em;
+}
+
+.technologies {
+    margin-top: 15px;
+    font-size: 0.95em;
+    color: #495057;
+}
+
+.technologies strong {
+    color: #1C539F;
+}
+
+.hobbies-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.hobby-item {
+    text-align: center;
+    width: 220px;
+    transition: transform 0.3s ease;
+}
+
+.hobby-item:hover {
+    transform: scale(1.05);
+}
+
+.hobby-item img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.hobby-item h4 {
+    margin: 0;
+    color: #343a40;
+    font-size: 1.2em;
+}
+
+#map {
+    height: 450px;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
