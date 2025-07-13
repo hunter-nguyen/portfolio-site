@@ -1,3 +1,4 @@
+from flask import Flask, request, render_template, jsonify
 from flask import Flask, request
 from peewee import *
 from playhouse.shortcuts import model_to_dict
@@ -50,3 +51,7 @@ def create_app():
     return app
 
 app = create_app()
+
+@app.route('/timeline')
+def timeline():
+    return render_template('timeline.html')
