@@ -1,5 +1,10 @@
 # test_db.py
 
+import sys
+import os
+
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+
 import unittest
 from peewee import *
 
@@ -36,4 +41,14 @@ class TestTimelinePost(unittest.TestCase):
        second_post = TimelinePost.create(name='Jane Doe',
            email='jane@example.com', content='Hello world, I\'m Jane!')
        assert second_post.id == 2
-       # TODO: Get timeline posts and assert that they are correct
+       posts = TimelinePost.select().order_by(TimelinePost.id)
+              
+       assert posts[0].id == 1
+       assert posts[0].name == 'John Doe'
+       assert posts[0].email == 'john@example.com'
+       assert posts[0].content == 'Hello world, I\'m John!'
+       
+       assert posts[1].id == 2
+       assert posts[1].name == 'Jane Doe'
+       assert posts[1].email == 'jane@example.com'
+       assert posts[1].content == 'Hello world, I\'m Jane!'
