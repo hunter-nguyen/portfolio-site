@@ -33,17 +33,16 @@
             const hash = md5(email.trim().toLowerCase());
             return `https://www.gravatar.com/avatar/${hash}?s=100&d=identicon`;
         }
-
-
+        
         function formatDate(dateString) {
             const date = new Date(dateString);
             return date.toLocaleDateString() + ' at ' + date.toLocaleTimeString();
         }
-
+        
         function renderPosts(posts) {
             const container = document.getElementById('timeline-posts');
             
-            if (posts.length === 0) {
+            if (!posts || posts.length === 0) {
                 container.innerHTML = '<p>No timeline posts yet. Be the first to share something!</p>';
                 return;
             }
@@ -59,38 +58,59 @@
                 </div>
             `).join('');
         }
-
-        function loadPosts() {
-            fetch('/api/timeline_post')
-                .then(response => response.json())
-                .then(data => {
-                    renderPosts(data.timeline_posts);
-                })
-                .catch(error => {
-                    console.error('Error loading posts:', error);
-                });
+        
+        async function loadPosts() {
+            try {
+                const response = await fetch('/api/timeline_post');
+                
+                // Check if response is JSON
+                const contentType = response.headers.get("Content-Type") || "";
+                if (!response.ok || !contentType.includes("application/json")) {
+                    throw new Error(`Bad response: ${response.status}`);
+                }
+        
+                const data = await response.json();
+                renderPosts(data.timeline_posts);
+            } catch (err) {
+                console.error('Error loading posts:', err);
+                document.getElementById('timeline-posts').innerHTML = `<p style="color:red;">Could not load timeline. (${err.message})</p>`;
+            }
         }
-
-        document.getElementById('form').addEventListener('submit', function (e) {
+        
+        document.getElementById('form').addEventListener('submit', async function (e) {
             e.preventDefault();
-
+            
             const formData = new FormData(this);
-
-            fetch('/api/timeline_post', {
-                method: 'POST',
-                body: formData,
-            })
-            .then(response => response.json())
-            .then(data => {
+            const postData = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                content: formData.get('content')
+            };
+        
+            try {
+                const response = await fetch('/api/timeline_post', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(postData)
+                });
+        
+                const contentType = response.headers.get("Content-Type") || "";
+                if (!response.ok || !contentType.includes("application/json")) {
+                    throw new Error(`Bad response: ${response.status}`);
+                }
+        
+                const data = await response.json();
                 this.reset();
                 loadPosts();
-            })
-            .catch(error => {
-                console.error('Error submitting post:', error);
-            });
+            } catch (err) {
+                console.error('Error submitting post:', err);
+                alert("Failed to submit timeline post. Try again later.");
+            }
         });
-
+        
         document.addEventListener('DOMContentLoaded', loadPosts);
-    </script>
+        </script>        
 </body>
 </html>
