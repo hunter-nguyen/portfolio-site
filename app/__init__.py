@@ -1,18 +1,19 @@
 from flask import Flask, request, render_template, jsonify
-from flask import Flask, request
 from peewee import *
 from playhouse.shortcuts import model_to_dict
 from dotenv import load_dotenv
 import os
+import time
 import datetime
 
+# Load environment variables
 load_dotenv()
 
+# Choose DB engine based on TESTING env variable
 if os.getenv("TESTING") == "true":
     print("Running in testing mode")
     db = SqliteDatabase('test.db')
 else:
-    # MySQL Database Connection
     db = MySQLDatabase(
         os.getenv("MYSQL_DATABASE"),
         user=os.getenv("MYSQL_USER"),
@@ -31,12 +32,23 @@ class TimelinePost(Model):
     class Meta:
         database = db
 
-# Create the Flask app
+# Retry wrapper for DB connection
+def wait_for_db_connection(retries=10, delay=3):
+    for i in range(retries):
+        try:
+            db.connect()
+            print(f"[DB] Connected on attempt {i+1}")
+            return
+        except OperationalError as e:
+            print(f"[DB Retry] Attempt {i+1} failed: {e}")
+            time.sleep(delay)
+    raise Exception("Could not connect to the database after retries.")
+
+# Create Flask app
 def create_app():
     app = Flask(__name__)
 
-    # Connect and create the timeline_post table
-    db.connect()
+    wait_for_db_connection()
     db.create_tables([TimelinePost], safe=True)
 
     @app.route("/api/timeline_post", methods=["POST"])
@@ -60,14 +72,17 @@ def create_app():
         timeline_posts = TimelinePost.select().order_by(TimelinePost.created_at.desc())
         return {"timeline_posts": [model_to_dict(post) for post in timeline_posts]}
 
+    @app.route("/timeline")
+    def timeline():
+        return render_template("timeline.html")
+
+    @app.route('/')
+    def index():
+        return render_template("index.html")
+
     return app
 
 app = create_app()
 
-@app.route('/timeline')
-def timeline():
-    return render_template('timeline.html')
-
-@app.route('/')
-def index():
-    return render_template('index.html')
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
