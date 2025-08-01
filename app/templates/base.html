@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link lang='sass' rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
+    <link rel='icon' href="{{ url_for('static', filename='img/favicon.ico') }}" type='image/x-icon' />
+</head>
+<body>
+    <header class="nav-bar">
+        <div class="nav-content">
+            <a href="/">
+                <div class="nav-logo">
+                    <img src="{{ url_for('static', filename='img/logo.svg') }}" />
+                </div>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">About</a></li>
+                    <li><a href="{{ url_for('hobbies') }}">Hobbies</a></li>
+                    <li><a href="{{ url_for('timeline') }}">Timeline</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html> 

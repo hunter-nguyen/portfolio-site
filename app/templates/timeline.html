@@ -1,116 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Timeline</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.19.0/js/md5.min.js"></script>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block content %}
+<div class="timeline-container">
     <h1>Timeline</h1>
-    <form id="form">
-        <div>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-        </div>
-        <div>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-        </div>
-        <div>
-            <label for="content">Content:</label>
-            <textarea id="content" name="content" required></textarea>
-        </div>
-        <button type="submit">Submit</button>
+    <form id="timeline-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br>
+        <label for="content">Content:</label>
+        <textarea id="content" name="content" required></textarea>
+        <br>
+        <button type="submit">Add Post</button>
     </form>
+    <div id="timeline-posts"></div>
+</div>
 
-    <div id="timeline-posts">
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('timeline-form');
+        const postsContainer = document.getElementById('timeline-posts');
 
-    </div>
-
-    <script>
-        function get_avatar_url(email) {
-            const hash = md5(email.trim().toLowerCase());
-            return `https://www.gravatar.com/avatar/${hash}?s=100&d=identicon`;
-        }
-        
-        function formatDate(dateString) {
-            const date = new Date(dateString);
-            return date.toLocaleDateString() + ' at ' + date.toLocaleTimeString();
-        }
-        
-        function renderPosts(posts) {
-            const container = document.getElementById('timeline-posts');
-            
-            if (!posts || posts.length === 0) {
-                container.innerHTML = '<p>No timeline posts yet. Be the first to share something!</p>';
-                return;
-            }
-            
-            container.innerHTML = posts.map(post => `
-                <div>
-                    <h3>Name: ${post.name}</h3>
-                    <p><strong>Email:</strong> ${post.email}</p>
-                    <p><strong>Date:</strong> ${formatDate(post.created_at)}</p>
-                    <p><strong>Content:</strong> ${post.content}</p>
-                    <img src="${get_avatar_url(post.email)}" alt="Avatar">
-                    <hr>
-                </div>
-            `).join('');
-        }
-        
-        async function loadPosts() {
-            try {
-                const response = await fetch('/api/timeline_post');
-                
-                // Check if response is JSON
-                const contentType = response.headers.get("Content-Type") || "";
-                if (!response.ok || !contentType.includes("application/json")) {
-                    throw new Error(`Bad response: ${response.status}`);
-                }
-        
-                const data = await response.json();
-                renderPosts(data.timeline_posts);
-            } catch (err) {
-                console.error('Error loading posts:', err);
-                document.getElementById('timeline-posts').innerHTML = `<p style="color:red;">Could not load timeline. (${err.message})</p>`;
-            }
-        }
-        
-        document.getElementById('form').addEventListener('submit', async function (e) {
-            e.preventDefault();
-            
-            const formData = new FormData(this);
-            const postData = {
-                name: formData.get('name'),
-                email: formData.get('email'),
-                content: formData.get('content')
-            };
-        
-            try {
-                const response = await fetch('/api/timeline_post', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(postData)
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const formData = new FormData(form);
+            fetch('/api/timeline_post', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    form.reset();
+                    loadPosts();
                 });
-        
-                const contentType = response.headers.get("Content-Type") || "";
-                if (!response.ok || !contentType.includes("application/json")) {
-                    throw new Error(`Bad response: ${response.status}`);
-                }
-        
-                const data = await response.json();
-                this.reset();
-                loadPosts();
-            } catch (err) {
-                console.error('Error submitting post:', err);
-                alert("Failed to submit timeline post. Try again later.");
-            }
         });
-        
-        document.addEventListener('DOMContentLoaded', loadPosts);
-        </script>        
-</body>
-</html>
+
+        function loadPosts() {
+            fetch('/api/timeline_post')
+                .then(response => response.json())
+                .then(data => {
+                    postsContainer.innerHTML = '';
+                    data.timeline_posts.forEach(post => {
+                        const postElement = document.createElement('div');
+                        postElement.classList.add('post');
+                        postElement.innerHTML = `
+                        <p><strong>${post.name}</strong> (${post.email})</p>
+                        <p>${post.content}</p>
+                        <p><small>${post.created_at}</small></p>
+                    `;
+                        postsContainer.appendChild(postElement);
+                    });
+                });
+        }
+
+        loadPosts();
+    });
+</script>
+{% endblock %}
