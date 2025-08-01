@@ -1,6 +1,37 @@
 {% extends "base.html" %}
 
 {% block content %}
+<style>
+    .timeline-container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .post {
+        border-bottom: 1px solid #eee;
+        padding: 15px;
+        display: flex;
+        align-items: flex-start;
+    }
+    .post:last-child {
+        border-bottom: none;
+    }
+    .post-avatar img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 15px;
+    }
+    .post-content {
+        flex: 1;
+    }
+    .post-content p {
+        margin: 0 0 5px;
+    }
+</style>
 <div class="timeline-container">
     <h1>Timeline</h1>
     <form id="timeline-form">
@@ -46,10 +77,15 @@
                         const postElement = document.createElement('div');
                         postElement.classList.add('post');
                         postElement.innerHTML = `
-                        <p><strong>${post.name}</strong> (${post.email})</p>
-                        <p>${post.content}</p>
-                        <p><small>${post.created_at}</small></p>
-                    `;
+                            <div class="post-avatar">
+                                <img src="${post.gravatar}" alt="${post.name}'s avatar">
+                            </div>
+                            <div class="post-content">
+                                <p><strong>${post.name}</strong> (${post.email})</p>
+                                <p>${post.content}</p>
+                                <p><small>${post.created_at}</small></p>
+                            </div>
+                        `;
                         postsContainer.appendChild(postElement);
                     });
                 });

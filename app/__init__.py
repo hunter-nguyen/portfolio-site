@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from peewee import *
 import datetime
 import re
+import hashlib
 from playhouse.shortcuts import model_to_dict
 
 load_dotenv()
@@ -69,12 +70,14 @@ def post_time_line_post():
 
 @app.route('/api/timeline_post', methods=['GET'])
 def get_time_line_post():
-    return {
-        "timeline_posts": [
-            model_to_dict(p)
-            for p in TimelinePost.select().order_by(TimelinePost.created_at.desc())
-        ]
-    }
+    timeline_posts = []
+    for post in TimelinePost.select().order_by(TimelinePost.created_at.desc()):
+        post_dict = model_to_dict(post)
+        email_hash = hashlib.md5(post.email.strip().lower().encode('utf-8')).hexdigest()
+        post_dict['gravatar'] = f"https://www.gravatar.com/avatar/{email_hash}?d=identicon"
+        timeline_posts.append(post_dict)
+
+    return {"timeline_posts": timeline_posts}
 
 @app.route('/api/timeline_post', methods=['DELETE'])
 def delete_time_line_post():

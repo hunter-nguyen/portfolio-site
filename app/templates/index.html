@@ -5,7 +5,7 @@
     <!-- Hunter's Profile -->
     <div class="profile">
         <div id="profile-picture" class="profile-picture">
-            <img src="./static/img/pfp.jpg">
+            <img src="{{ url_for('static', filename='img/pfp.jpg') }}">
         </div>
         <h1>Hunter</h1>
     </div>
@@ -13,7 +13,7 @@
     <!-- Baljinder's Profile -->
     <div class="profile">
         <div id="profile-picture" class="profile-picture">
-            <img src="./static/img/BHpfp.jpg">
+            <img src="{{ url_for('static', filename='img/BHpfp.jpg') }}">
         </div>
         <h1>Baljinder</h1>
     </div>
@@ -23,9 +23,7 @@
     <!-- Hunter's About Section -->
     <div class="about-section">
         <h2>About Hunter</h2>
-        <p>I am a full stack developer with a passion for creating beautiful and functional web applications. I have
-            experience with a variety of technologies including Python, Flask, JavaScript, and more. I am always looking
-            to learn and grow as a developer</p>
+        <p>I am a software engineer passionate about AI and creating products that will help people and help the world. I am always looking to learn and grow as a developer.</p>
     </div>
 
     <!-- Baljinder's About Section -->
@@ -50,7 +48,7 @@
                     Ocean, CI/CD, Prometheus</p>
             </div>
             <div class="experience-item">
-                <h3>Undergraduate Researcher</h3>
+                <h3>Machine Learning Researcher</h3>
                 <h4>San Jose State University</h4>
                 <p class="experience-date">September 2024 – May 2025</p>
                 <p class="technologies"><strong>Technologies:</strong> Python, PyTorch, CAD, MPNN, GNN, Fusion 360</p>

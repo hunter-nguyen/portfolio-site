@@ -13,40 +13,55 @@ body {
 
 .nav-bar {
     width: 100%;
-    display: inline-block;
     background-color: #1C539F;
     font-family: "Roboto", serif;
     font-weight: 700 !important;
-    padding-top: 10px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .nav-content .logo-touch-target {
     display: inline-flex;
-    height: 60%;
-    width: 350px;
-}
-
-.nav-content .nav-logo {
-    height: 60px;
-    margin: auto;
-}
-
-.nav-logo {
-    display: flex;
     align-items: center;
-    justify-content: center;
 }
 
 .nav-logo img {
-    width: 200px;
+    height: 50px;
+    width: auto;
 }
 
-.nav-content nav {
-    display: block;
-    width: 100%;
-    text-align: right;
-    padding-top: 0px;
-    padding-right: 0px;
+.nav-content nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 25px;
+}
+
+.nav-content nav li {
+    display: inline;
+}
+
+.nav-content nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-content nav a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 .profile {
