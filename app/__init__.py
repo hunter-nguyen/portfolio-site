@@ -46,6 +46,10 @@ def timeline():
 def hobbies():
     return render_template('hobbies.html', title="Hobbies", url=os.getenv("URL"))
 
+@app.route('/projects')
+def projects():
+    return render_template('projects.html', title="Projects", url=os.getenv("URL"))
+
 @app.route('/api/timeline_post', methods=['POST'])
 def post_time_line_post():
     
