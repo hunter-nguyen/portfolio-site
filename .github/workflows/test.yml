@@ -1,9 +1,11 @@
 name: Run Tests
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   test:
@@ -27,11 +29,11 @@ jobs:
             requirements-dev.txt
 
       - name: Create virtual environment
-        run: python -m venv .venv
+        run: python -m venv venv
 
       - name: Install dependencies
         run: |
-          . .venv/bin/activate
+          . venv/bin/activate
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi
@@ -41,5 +43,5 @@ jobs:
 
       - name: Run tests
         run: |
-          . .venv/bin/activate
+          . venv/bin/activate
           ./run_test.sh
